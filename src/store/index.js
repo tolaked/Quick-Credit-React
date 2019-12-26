@@ -11,4 +11,5 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(...middlewares))
 );
 
+// expose the store
 export default store;
