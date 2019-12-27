@@ -1,87 +1,59 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, Route, withRouter } from "react-router-dom";
+import Axios from "axios";
 import Styled from "styled-components";
+import Register from "./Register";
 
-const Register = props => {
-  const [newUser, setNewUser] = useState({
-    firstname: "",
-    lastname: "",
-    email: "",
-    address: "",
-    password: ""
-  });
-  const submitInfo = (e, credentials) => {
-    e.preventDefault();
-    console.log("submitted");
-    axios
-      .post(
-        "https://my-quick-credit-app.herokuapp.com/api/v2/auth/signup",
-        credentials
-      )
+const Login = props => {
+  const [user, setUser] = useState({ email: "", password: "" });
+  const submitInfo = (event, credentials) => {
+    event.preventDefault();
+    Axios.post(
+      "https://my-quick-credit-app.herokuapp.com/api/v2/auth/signin",
+      credentials
+    )
       .then(res => {
         localStorage.setItem("token", res.data.token);
         console.log(res.data);
       })
-      .catch(err => {
-        console.log(err);
+      .catch(error => {
+        console.log(error);
       });
   };
-
-  const handleChange = e => {
-    const { name, value } = e.target;
-    setNewUser({ ...newUser, [name]: value });
+  const handleChange = event => {
+    const { name, value } = event.target;
+    setUser({ ...user, [name]: value });
   };
   return (
     <div>
-      <StyledForm onSubmit={e => submitInfo(e, newUser)}>
+      <StyledForm onSubmit={e => submitInfo(e, user)}>
         <StyledH3>Please enter your credentials to sign up</StyledH3>
-        <Label>firstname</Label>
-        <StyledInput
-          type="text"
-          value={newUser.firstname}
-          name="firstname"
-          onChange={handleChange}
-        />
-        <Label>lastname</Label>
-        <StyledInput
-          type="text"
-          value={newUser.lastname}
-          name="lastname"
-          onChange={handleChange}
-        />
         <Label>email</Label>
         <StyledInput
           type="text"
-          value={newUser.email}
+          value={user.email}
           name="email"
           onChange={handleChange}
         />
-        <Label>address</Label>
-        <StyledInput
-          type="text"
-          value={newUser.address}
-          name="address"
-          onChange={handleChange}
-        />
+
         <Label>password</Label>
         <StyledInput
           type="text"
-          value={newUser.password}
+          value={user.password}
           name="password"
           onChange={handleChange}
         />
         <StyledButton>Join the platform</StyledButton>
         <StyledParagraph>
-          Already have an account?
-          <Link to="/login">Log in</Link>
+          Don't have an account?
+          <Link to="/signup">Signup</Link>
         </StyledParagraph>
       </StyledForm>
     </div>
   );
 };
 
-export default Register;
+export default withRouter(Login);
 
 const StyledForm = Styled.form`
 padding: 0px 30px 25px 30px;
