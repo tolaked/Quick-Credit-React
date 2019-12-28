@@ -1,4 +1,5 @@
 import * as types from "./actionTypes";
+import AxiosWithAuth from "../utils/AxiosWithAuth";
 
 export const fetching = status => ({
   type: types.REQUESTING,
@@ -15,12 +16,25 @@ export const showError = error => ({
   payload: error
 });
 
-export const doSignUp = user => dispatch => {
-  dispatch(Request(true));
-  if (user.name) {
-    dispatch(Success(true));
-  } else {
-    dispatch(showError("error"));
-    console.log("error");
-  }
+export const currentUser = user => {
+  return {
+    type: types.CURRENT_USER,
+    payload: user
+  };
+};
+
+export const userLoan = loans => {
+  return {
+    type: types.USER_LOANS,
+    payload: loans
+  };
+};
+
+export const getLoans = () => dispatch => {
+  console.log("I logged");
+  AxiosWithAuth()
+    .get("https://my-quick-credit-app.herokuapp.com/api/v2/loans/history")
+    .then(({ data }) => {
+      dispatch(userLoan(data.data));
+    });
 };

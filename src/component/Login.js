@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, Route, withRouter } from "react-router-dom";
 import Axios from "axios";
 import Styled from "styled-components";
-import Register from "./Register";
+import jwt_decode from "jwt-decode";
 
 const Login = props => {
   const [user, setUser] = useState({ email: "", password: "" });
@@ -12,9 +12,11 @@ const Login = props => {
       "https://my-quick-credit-app.herokuapp.com/api/v2/auth/signin",
       credentials
     )
-      .then(res => {
-        localStorage.setItem("token", res.data.token);
-        console.log(res.data);
+      .then(({ data }) => {
+        localStorage.setItem("token", data.data[0].token);
+        const decoded = jwt_decode(data.data[0].token);
+        localStorage.setItem("userId", decoded.id);
+        console.log(data.data[0].token);
       })
       .catch(error => {
         console.log(error);

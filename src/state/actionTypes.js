@@ -3,6 +3,7 @@ export const ERROR = "ERROR";
 export const REQUESTING = "REQUESTING";
 export const ADD_USERS = "ADD_USERS";
 export const CURRENT_USER = "CURRENT_USER";
+export const USER_LOANS = "USER_LOANS";
 export const ADD_LOANS = "ADD_LOANS";
 export const ADD_REPAID_LOANS = "ADD_REPAID_LOANS";
 export const ADD_PENDING_LOANS = "ADD_PENDING_LOANS";

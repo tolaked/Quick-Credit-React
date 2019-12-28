@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import Styled from "styled-components";
+import jwt_decode from "jwt-decode";
+import { currentUser } from "../state/actionCreator";
 
 const Register = props => {
+  const dispatch = useDispatch();
   const [newUser, setNewUser] = useState({
     firstname: "",
     lastname: "",
@@ -11,6 +15,7 @@ const Register = props => {
     address: "",
     password: ""
   });
+  let user;
   const submitInfo = (e, credentials) => {
     e.preventDefault();
     console.log("submitted");
@@ -20,8 +25,12 @@ const Register = props => {
         credentials
       )
       .then(res => {
-        localStorage.setItem("token", res.data.token);
-        console.log(res.data);
+        console.log(res.data.data.token);
+        localStorage.setItem("token", res.data.data.token);
+        const decoded = jwt_decode(res.data.data.token);
+        localStorage.setItem("userId", decoded.id);
+        user = res.data.data.newUser;
+        dispatch(currentUser(user));
       })
       .catch(err => {
         console.log(err);

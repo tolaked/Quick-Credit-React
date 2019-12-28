@@ -5,10 +5,12 @@ const initialState = {
     data: []
   },
   currentUser: {
-    id: "",
     firstName: "",
     lastName: "",
     email: "",
+    address: "",
+    isAdmin: null,
+    status: "pending",
     loans: []
   },
   fetching: false,
@@ -46,6 +48,11 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         currentUser: action.payload
+      };
+    case types.USER_LOANS:
+      return {
+        ...state,
+        currentUser: { ...state.currentUser, loans: action.payload }
       };
     default:
       return state;
