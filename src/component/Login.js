@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, Route, withRouter } from "react-router-dom";
 import Axios from "axios";
+import { Button } from "antd";
 import Styled from "styled-components";
 import jwt_decode from "jwt-decode";
 
@@ -16,7 +17,11 @@ const Login = props => {
         localStorage.setItem("token", data.data[0].token);
         const decoded = jwt_decode(data.data[0].token);
         localStorage.setItem("userId", decoded.id);
-        console.log(data.data[0].token);
+        if (decoded.isadmin) {
+          props.history.push("/view");
+        } else {
+          props.history.push("/dashboard");
+        }
       })
       .catch(error => {
         console.log(error);

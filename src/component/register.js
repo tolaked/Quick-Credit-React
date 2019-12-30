@@ -18,14 +18,12 @@ const Register = props => {
   let user;
   const submitInfo = (e, credentials) => {
     e.preventDefault();
-    console.log("submitted");
     axios
       .post(
         "https://my-quick-credit-app.herokuapp.com/api/v2/auth/signup",
         credentials
       )
       .then(res => {
-        console.log(res.data.data.token);
         localStorage.setItem("token", res.data.data.token);
         const decoded = jwt_decode(res.data.data.token);
         localStorage.setItem("userId", decoded.id);
