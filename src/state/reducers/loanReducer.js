@@ -1,14 +1,13 @@
-import * as types from "../actionTypes";
+import * as types from "../constants/loans.Types";
 
 const initialState = {
   loans: {
-    allLoans: [],
-    repaidLoans: [],
-    pendingLoans: []
-  },
-  fetching: false,
+    fetching: false,
   success: false,
-  error: null
+  error: null,
+    allLoans: [],
+  },
+  
 };
 
 export const loanReducer = (state = initialState, action) => {
@@ -18,16 +17,7 @@ export const loanReducer = (state = initialState, action) => {
         ...state,
         loans: { ...state.loans, allLoans: action.payload }
       };
-    case types.ADD_PENDING_LOANS:
-      return {
-        ...state,
-        loans: { ...state.loans, pendingLoans: action.payload }
-      };
-    case types.ADD_REPAID_LOANS:
-      return {
-        ...state,
-        loans: { ...state.loans, repaidLoans: action.payload }
-      };
+   
     case types.REQUESTING:
       return {
         ...state,

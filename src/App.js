@@ -1,12 +1,15 @@
 import React from "react";
 import "./App.css";
-import { Route } from "react-router-dom";
-import Container from "./component/Container";
+import Header from "./component/Admin/Header";
+import Sidebar from "./component/Admin/Sidebar";
+import AllContents from "./component/Admin/AllContents";
 
 function App() {
   return (
     <div className="App">
-      <Container />
+      <Header />
+      <Sidebar />
+      <AllContents />
     </div>
   );
 }

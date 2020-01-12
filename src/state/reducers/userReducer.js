@@ -1,9 +1,9 @@
-import * as types from "../actionTypes";
+import * as types from "../constants/user.Types";
 
 const initialState = {
-  users: {
-    data: []
-  },
+  fetching: false,
+  success: false,
+  error: null,
   currentUser: {
     firstName: "",
     lastName: "",
@@ -11,11 +11,8 @@ const initialState = {
     address: "",
     isAdmin: null,
     status: "pending",
-    loans: []
   },
-  fetching: false,
-  success: false,
-  error: null
+
 };
 
 export const reducer = (state = initialState, action) => {
@@ -39,21 +36,13 @@ export const reducer = (state = initialState, action) => {
         fetching: false,
         error: action.payload
       };
-    case types.ADD_USERS:
-      return {
-        ...state,
-        users: action.payload
-      };
+   
     case types.CURRENT_USER:
       return {
         ...state,
         currentUser: action.payload
       };
-    case types.USER_LOANS:
-      return {
-        ...state,
-        currentUser: { ...state.currentUser, loans: action.payload }
-      };
+ 
     default:
       return state;
   }
