@@ -1,23 +1,15 @@
-import * as types from "../constants/loans.Types";
+import * as types from "../constants/loans";
 
 const initialState = {
-  loans: {
     fetching: false,
   success: false,
-  error: null,
-    allLoans: [],
-  },
-  
+  error: '',
+    loans: [],
 };
 
 export const loanReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.ADD_LOANS:
-      return {
-        ...state,
-        loans: { ...state.loans, allLoans: action.payload }
-      };
-   
+ 
     case types.REQUESTING:
       return {
         ...state,

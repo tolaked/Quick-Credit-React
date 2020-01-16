@@ -1,17 +1,10 @@
 import * as types from "../constants/user.Types";
 
 const initialState = {
-  fetching: false,
+  requesting: false,
   success: false,
   error: null,
-  currentUser: {
-    firstName: "",
-    lastName: "",
-    email: "",
-    address: "",
-    isAdmin: null,
-    status: "pending",
-  },
+  user: {},
 
 };
 
@@ -20,27 +13,22 @@ export const reducer = (state = initialState, action) => {
     case types.REQUESTING:
       return {
         ...state,
-        fetching: action.payload
+        requesting: action.payload
       };
 
     case types.SUCCESS:
       return {
         ...state,
-        fetching: false,
-        success: action.payload
+        requesting: false,
+        user: action.payload
       };
 
     case types.ERROR:
       return {
         ...state,
-        fetching: false,
+        requesting: false,
+        user:{},
         error: action.payload
-      };
-   
-    case types.CURRENT_USER:
-      return {
-        ...state,
-        currentUser: action.payload
       };
  
     default:
