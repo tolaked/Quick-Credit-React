@@ -22,12 +22,10 @@ export const doSignUp = (user) => dispatch => {
   axios
     .post("https://my-quick-credit-app.herokuapp.com/api/v2/auth/signup", user)
     .then(({data})=> {
-      console.log('see',data);
-      dispatch(signUpSuccess(data.user));
+      dispatch(signUpSuccess(data.data.newUser));
     })
-    .catch(({ error }) => {
-      console.log("see error", error);
-      dispatch(signUpError("An error occured"));
+    .catch(error  => {
+      dispatch(signUpError(error.response.data));
     })
     dispatch(signUpRequest(false));
 };

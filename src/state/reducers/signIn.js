@@ -1,8 +1,7 @@
-import * as types from "../constants/user.Types";
+import * as types from "../constants/signIn";
 
 const initialState = {
   requesting: false,
-  success: false,
   error: null,
   user: {},
 
@@ -10,20 +9,21 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.REQUESTING:
+    case types.LOGIN_REQUEST:
       return {
         ...state,
         requesting: action.payload
       };
 
-    case types.SUCCESS:
+    case types.LOGIN_SUCCESS:
       return {
         ...state,
         requesting: false,
+        error:null,
         user: action.payload
       };
 
-    case types.ERROR:
+    case types.LOGIN_ERROR:
       return {
         ...state,
         requesting: false,

@@ -1,3 +1,3 @@
-export const SIGNUP_SUCCESS = "SUCCESS";
-export const SIGNUP_REQUESTING = "REQUESTING";
-export const SIGNUP_ERROR = "ERROR";
+export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
+export const SIGNUP_REQUESTING = "SIGNUP__REQUESTING";
+export const SIGNUP_ERROR = "SIGNUP_ERROR";

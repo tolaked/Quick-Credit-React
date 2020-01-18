@@ -2,15 +2,8 @@ import * as types from "../constants/signUp";
 
 const initialState = {
   requesting: false,
-  success: false,
-  error: null,
-  user: {
-    firstname: "",
-    lastname: "",
-    email: "",
-    address: "",
-    status: "",
-  },
+  error: '',
+  user: {},
 
 };
 
@@ -26,6 +19,7 @@ const initialState = {
       return {
         ...state,
         requesting: false,
+        error: null,
         user: action.payload
       };
 

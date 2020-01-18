@@ -3,7 +3,8 @@ import "./App.css";
 import Header from "./component/Admin/Header";
 import Sidebar from "./component/Admin/Sidebar";
 import AllContents from "./component/Admin/AllContents";
-import SignUp from "./component/Auth/SignUp"
+import SignUp from "./component/Auth/SignUp";
+import Login from "./component/Auth/Login"
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
       {/* <Header />
       <Sidebar />
       <AllContents /> */}
-      <SignUp />
+      {/* <SignUp /> */}
+      <Login/>
     </div>
   );
 }
