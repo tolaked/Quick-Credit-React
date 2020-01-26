@@ -20,6 +20,8 @@ export const doLogin = (user) => dispatch => {
     axios
       .post("https://my-quick-credit-app.herokuapp.com/api/v2/auth/signin", user)
       .then(({data})=> {
+        console.log('see user data', data)
+        localStorage.setItem('token',data.data[0].token)
         dispatch(loginSuccess(data.data[0].user));
       })
       .catch(error  => {

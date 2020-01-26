@@ -9,11 +9,13 @@ import ProfileCard from "../ProfileCard";
 const AllContents = () => {
   return (
     <div className="allcontents">
-      <Route exact path="/" component={ProfileCard} />
+      <Route  path="/profile" component={ProfileCard} />
       <Route path="/loans" component={LoanApplications} />
       <Route path="/repaid" component={RepaidLoans} />
       <Route path="/verify" component={VerifyUser} />
       <Route path="/repayment" component={LoanRepayment} />
+    
+      
     </div>
   );
 };

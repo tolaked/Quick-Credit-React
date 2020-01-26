@@ -1,32 +1,33 @@
 import * as types from "../constants/loans";
 
 const initialState = {
-    fetching: false,
-  success: false,
+    requesting: false,
   error: '',
     loans: [],
 };
 
-export const loanReducer = (state = initialState, action) => {
+export const loans = (state = initialState, action) => {
   switch (action.type) {
  
     case types.REQUESTING:
       return {
         ...state,
-        fetching: action.payload
+        requesting: action.payload
       };
 
     case types.SUCCESS:
       return {
         ...state,
-        fetching: false,
-        success: action.payload
+        requesting: false,
+        error:null,
+        loans: action.payload
       };
 
     case types.ERROR:
       return {
         ...state,
         fetching: false,
+        loans:[],
         error: action.payload
       };
     default:
@@ -34,4 +35,4 @@ export const loanReducer = (state = initialState, action) => {
   }
 };
 
-export default loanReducer;
+export default loans;

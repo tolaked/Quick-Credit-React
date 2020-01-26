@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import {doLogin} from '../../state/actions/signIn'
 
 const Form = styled.form`
@@ -41,7 +43,8 @@ const Button = styled.button`
   background: grey;
   height: 30px;
 `;
-const Login = ({doLogin}) => {
+const Login = (props) => {
+  const doLogin = props.doLogin
   const initialState = {
     email: "",
     password: ""
@@ -59,6 +62,7 @@ const Login = ({doLogin}) => {
   const handleSubmit = event => {
     event.preventDefault();
    doLogin(existingUser)
+   props.history.push('/profile')
   };
 
   return (
@@ -86,7 +90,8 @@ const Login = ({doLogin}) => {
             onChange={handleChange}
           />
         </InputDiv>
-        <Button>SignUp</Button>
+        <Button>Login</Button>
+        <span>Don't have an account,<Link to='/signup'> signup</Link></span>
       </Form>
     </div>
   );

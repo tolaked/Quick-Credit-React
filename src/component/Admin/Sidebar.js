@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink, withRouter, Route } from "react-router-dom";
+import MainPage from './MainPage';
 import "../pages.css";
 
 const Sidebar = () => {
@@ -10,7 +11,7 @@ const Sidebar = () => {
           <NavLink className="navlink" to="/loans" activeClassName="active">
             Loan Applications
           </NavLink>
-          <NavLink className="navlink" to="/">
+          <NavLink className="navlink" to="/profile">
             Profile
           </NavLink>
           <NavLink className="navlink" to="/repaid">
@@ -22,6 +23,7 @@ const Sidebar = () => {
           <NavLink className="navlink" to="/repayment">
             Loan repayment
           </NavLink>
+          {/* <Route to='/mainpage' component={MainPage}/> */}
         </section>
       </div>
     </div>
